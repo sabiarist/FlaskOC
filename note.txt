@@ -1,0 +1,48 @@
+
+Utiliser Virtualenv
+
+installer VirtualEnv hors dossier projet
+    pip install virtualenv
+
+Créer environnement virtuel dans projet
+    virtualenv env
+    or
+    virtualenv -p $env:python3 env
+
+activer l'environnement
+    ./env/scripts/activate.ps1
+
+réactiver à chaque fois avant utilisation.
+
+désactiver un environnement virtuel
+    deactivate
+
+supprimer un environnement virtuel
+    deactivate
+    rm -rf env
+
+Désactiver le suivi Git
+    créez un fichier .gitignore
+    ajoutez env/
+
+Créer un fichier de dépendances
+    pip list > requirements.txt
+
+Installer des dépendances depuis un fichier de dependances
+    pip install -r requirements.txt
+
+activer un dossier comme repository Git
+    git init
+ajouter à l'index Git
+    git add .
+
+commit
+    git push https://github.com/sabiarist/FlaskOC.git master
+
+Installer Flask
+    pip install flask
+
+vérifier que Flask fonctionne
+    python views.py
+
+
