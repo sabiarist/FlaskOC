@@ -48,4 +48,32 @@ Installer Flask
 vérifier que Flask fonctionne
     python views.py
 
+Utiliser un ORM
+    installer alchemy
+        pip install flask_sqlalchemy
+        or
+        pip install SQLAlchemy==1.2.19
 
+console interactive de Flask
+    set FLASK_APP=run.py
+    flask shell
+
+ajouter un item à la base
+    db.session.add()
+
+faire les requêtes dans la base pour finaliser l'opération
+    db.session.commit()
+
+renvoie tous les items de la table Content
+    Content.query.all()
+
+modifier un item via son id
+    content = Content.query.get(1)
+    content.description
+    content.description = "Il s'appelle Juste Leblanc."
+    db.session.commit()
+
+supprimer un élément
+    content = Content.query.get(1)
+    db.session.delete(content)
+    db.session.commit()
