@@ -39,6 +39,9 @@ ajouter à l'index Git
 commit
     git push https://github.com/sabiarist/FlaskOC.git master
 
+push
+    git push -f origin master
+
 Installer Flask
     pip install flask
 
