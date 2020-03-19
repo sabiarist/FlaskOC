@@ -80,3 +80,7 @@ supprimer un élément
 
 Peupler la table de données pré-existantes
     FLASK_APP=run.py flask init_db
+
+ filtrer par colonne
+    TableName.query.filter_by(column_name=filter).first()
+
