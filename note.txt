@@ -81,6 +81,15 @@ supprimer un élément
 Peupler la table de données pré-existantes
     FLASK_APP=run.py flask init_db
 
- filtrer par colonne
+filtrer par colonne
     TableName.query.filter_by(column_name=filter).first()
+
+génère une URL
+    url_for('static', filename='css/bootstrap/bootstrap.min.css')
+
+utiliser la variable config
+    {{ config['FB_APP_ID'] }}
+
+étendre base.html dans le template result.html
+    {% extends 'base.html' %}
 
