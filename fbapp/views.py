@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -31,11 +31,20 @@ def result():
               Toi, tu n'as pas peur d'être seul ! Les grands espaces et les aventures sont faits pour toi. 
         D'ailleurs, Koh Lanta est ton émission préférée ! Bientôt tu partiras les cheveux au vent sur ton radeau. 
         Tu es aussi un idéaliste chevronné. Quelle chance !
-        """
+    """
+    gender = request.args.get('gender')
+    user_name = request.args.get('first_name')
+    uid = request.args.get('id')
+    profil_pic = 'http://graph.facebook.com/' + uid + '/picture?type=large'
     return render_template('result.html',
-                           user_name="Tomy",
-                           user_image=url_for('static', filename='tmp/cover_111823112767411.jpg'),
+                           user_name=user_name,
+                           user_image=profil_pic,
                            description=description)
+
+
+@app.route('/contents/<int:content_id>/')
+def content(content_id):
+    return '%s' % content_id
 
 
 if __name__ == "__main__":
