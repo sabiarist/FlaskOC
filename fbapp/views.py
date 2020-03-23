@@ -4,14 +4,21 @@ app = Flask(__name__)
 
 # config options - Make sure you created a config.py file.
 app.config.from_object('config')
-
 # to get one variable, tape app.config['MY_VARIABLE']
+
 from .utils import find_content
 
 
 @app.route('/')
 @app.route('/index/')
 def index():
+    if 'img' in request.args:
+        img = request.args['img']
+        og_url = url_for('index', img=img, _external=True)
+        og_image = url_for('static', filename=img, _external=True)
+    else:
+        og_url = url_for('index', _external=True)
+        og_image = url_for('static', filename='tmp/sample.jpg', _external=True)
     description = """
             Toi, tu sais comment utiliser la console ! Jamais à court d'idées pour réaliser ton objectif,
         tu es déterminé-e et persévérant-e. Tes amis disent d'ailleurs volontiers que tu as du caractère 

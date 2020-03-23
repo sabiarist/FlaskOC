@@ -23,6 +23,7 @@ class Content(db.Model):
         self.description = description
         self.gender = gender
 
+
 def init_db():
     db.drop_all()
     db.create_all()
