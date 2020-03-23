@@ -1,8 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 import logging as lg
-
-from .views import app
 import enum
+from .views import app
+
 
 # Create database connection object
 db = SQLAlchemy(app)
@@ -23,8 +23,6 @@ class Content(db.Model):
         self.description = description
         self.gender = gender
 
-
-# database initialisation
 def init_db():
     db.drop_all()
     db.create_all()
