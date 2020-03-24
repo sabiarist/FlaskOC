@@ -93,3 +93,17 @@ utiliser la variable config
 étendre base.html dans le template result.html
     {% extends 'base.html' %}
 
+utilisez la librairie Pillow pour générer l'image
+    pip install Pillow
+
+exécutez le script Pillow
+    python fbapp/utils.py
+
+textsize renvoie la largeur et la hauteur en pixeld'une chaine de caractères donnée.
+    w, h = draw.textsize(text, font)
+
+Calcul de la position pour que le texte soit centré et non pas aligné à gauche.
+    position = ((img.width - w) / 2, height)
+
+Ajout du texte à l'image.
+    draw.text(position, text, (255, 255, 255), font=font)

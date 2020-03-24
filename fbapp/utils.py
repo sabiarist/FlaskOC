@@ -1,5 +1,5 @@
-import random
-from PIL import Image
+import random, os
+from PIL import Image, ImageFont, ImageDraw
 
 """
 from fbapp.models import Content, Gender
@@ -14,12 +14,22 @@ def find_content(gender):
 class OpenGraphImage:
     def __init__(self, first_name, description):
         background = self.base()
+        self.print_on_img(background, first_name.capitalize(), 70, 50)
         background.show()
 
     @staticmethod
     def base():
         img = Image.new('RGB', (1200, 630), '#18BC9C')
         return img
+
+    @staticmethod
+    def print_on_img(img, text, size, height):
+        font = ImageFont.truetype(os.path.join('static', 'fonts', 'Arcon-Regular.otf'), size)
+        draw = ImageDraw.Draw(img)
+        w, h = draw.textsize(text, font)
+        position = ((img.width - w) / 2, height)
+        draw.text(position, text, (255, 255, 255), font=font)
+        return w, h
 
 
 description = """
