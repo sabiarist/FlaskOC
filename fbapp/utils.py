@@ -1,4 +1,4 @@
-import random, os
+import random, os, textwrap
 from PIL import Image, ImageFont, ImageDraw
 
 """
@@ -15,6 +15,13 @@ class OpenGraphImage:
     def __init__(self, first_name, description):
         background = self.base()
         self.print_on_img(background, first_name.capitalize(), 70, 50)
+
+        sentences = textwrap.wrap(description, width=60)
+        current_h, pad = 180, 10
+        for sentence in sentences:
+            w, h = self.print_on_img(background, sentence, 40, current_h)
+            current_h += h + pad
+
         background.show()
 
     @staticmethod
