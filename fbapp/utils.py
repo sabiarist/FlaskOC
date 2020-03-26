@@ -13,6 +13,7 @@ def find_content(gender):
 
 class OpenGraphImage:
     def __init__(self, uid, first_name, description):
+        self.location = self._location(uid)
         background = self.base()
         self.print_on_img(background, first_name.capitalize(), 70, 50)
 
