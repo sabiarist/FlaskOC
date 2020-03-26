@@ -12,7 +12,7 @@ def find_content(gender):
 
 
 class OpenGraphImage:
-    def __init__(self, first_name, description):
+    def __init__(self, uid, first_name, description):
         background = self.base()
         self.print_on_img(background, first_name.capitalize(), 70, 50)
 
@@ -22,7 +22,11 @@ class OpenGraphImage:
             w, h = self.print_on_img(background, sentence, 40, current_h)
             current_h += h + pad
 
-        background.show()
+        background.show(self._path(uid))
+
+    @staticmethod
+    def _path(uid):
+        return os.path.join('static', 'tmp', '{}.jpg'.format(uid))
 
     @staticmethod
     def base():
