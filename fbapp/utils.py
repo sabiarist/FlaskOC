@@ -29,6 +29,10 @@ class OpenGraphImage:
         return os.path.join('static', 'tmp', '{}.jpg'.format(uid))
 
     @staticmethod
+    def _location(uid):
+        return 'tmp/{}.jpg'.format(uid)
+
+    @staticmethod
     def base():
         img = Image.new('RGB', (1200, 630), '#18BC9C')
         return img
