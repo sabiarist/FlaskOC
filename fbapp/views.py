@@ -1,5 +1,7 @@
 from flask import Flask, render_template, url_for, request
 
+from .utils import find_content, OpenGraphImage
+
 app = Flask(__name__)
 
 # config options - Make sure you created a config.py file.
@@ -47,7 +49,7 @@ def result():
     uid = request.args.get('id')
     profile_pic = 'http://graph.facebook.com/' + uid + '/picture?type=large'
     description = find_content(gender).description
-    img = 'tmp/sample.jpg'
+    img = OpenGraphImage(uid, user_name, description).location
     og_url = url_for('index', img=img, _external=True)
     return render_template('result.html',
                            user_name=user_name,

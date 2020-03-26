@@ -1,14 +1,15 @@
-import random, os, textwrap
+import os
+import random
+import textwrap
+
 from PIL import Image, ImageFont, ImageDraw
 
-"""
 from fbapp.models import Content, Gender
 
 
 def find_content(gender):
     contents = Content.query.filter(Content.gender == Gender[gender]).all()
     return random.choice(contents)
-"""
 
 
 class OpenGraphImage:
@@ -47,8 +48,3 @@ class OpenGraphImage:
         draw.text(position, text, (255, 255, 255), font=font)
         return w, h
 
-
-description = """
-    Toi, tu sais comment utiliser la console ! Jamais à court d'idées pour réaliser ton objectif, tu es déterminé-e et persévérant-e. Tes amis disent d'ailleurs volontiers que tu as du caractère et que tu ne te laisses pas marcher sur les pieds. Un peu hacker sur les bords, tu aimes trouver des solutions à tout problème. N'aurais-tu pas un petit problème d'autorité ? ;-)
-    """
-OpenGraphImage('Celine', description)
