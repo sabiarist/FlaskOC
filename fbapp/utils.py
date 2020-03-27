@@ -14,8 +14,8 @@ def find_content(gender):
 
 class OpenGraphImage:
     def __init__(self, uid, first_name, description):
-        self.location = self._location(uid)
         background = self.base()
+        self.location = self._location(uid)
         self.print_on_img(background, first_name.capitalize(), 70, 50)
 
         sentences = textwrap.wrap(description, width=60)
@@ -24,7 +24,20 @@ class OpenGraphImage:
             w, h = self.print_on_img(background, sentence, 40, current_h)
             current_h += h + pad
 
-        background.show(self._path(uid))
+
+    @staticmethod
+    def base():
+        img = Image.new('RGB', (1200, 630), '#18BC9C')
+        return img
+
+    @staticmethod
+    def print_on_img(img, text, size, height):
+        font = ImageFont.truetype(os.path.join('fbapp', 'static', 'fonts', 'Arcon-Regular.otf'), size)
+        draw = ImageDraw.Draw(img)
+        w, h = draw.textsize(text, font)
+        position = ((img.width - w) / 2, height)
+        draw.text(position, text, (255, 255, 255), font=font)
+        return w, h
 
     @staticmethod
     def _path(uid):
@@ -34,17 +47,4 @@ class OpenGraphImage:
     def _location(uid):
         return 'tmp/{}.jpg'.format(uid)
 
-    @staticmethod
-    def base():
-        img = Image.new('RGB', (1200, 630), '#18BC9C')
-        return img
-
-    @staticmethod
-    def print_on_img(img, text, size, height):
-        font = ImageFont.truetype(os.path.join('static', 'fonts', 'Arcon-Regular.otf'), size)
-        draw = ImageDraw.Draw(img)
-        w, h = draw.textsize(text, font)
-        position = ((img.width - w) / 2, height)
-        draw.text(position, text, (255, 255, 255), font=font)
-        return w, h
 

@@ -107,3 +107,19 @@ Calcul de la position pour que le texte soit centré et non pas aligné à gauch
 
 Ajout du texte à l'image.
     draw.text(position, text, (255, 255, 255), font=font)
+
+Installation de Pytest (permet d'écrire des tests unitaires de manière très simple.)
+    pip install pytest
+
+Verifier installation de pytest
+    pytest --version
+
+Installer Flask-testing pour lancer un serveur de test
+    pip install Flask-Testing
+
+Installer Selenium pour mimer le comportement de l'user(automatiser l'interaction entre un utilisateur et un navigateur web.)
+    pip install selenium
+
+Installation d'un geckodriver pour Chrome
+    https://chromedriver.storage.googleapis.com/index.html?path=80.0.3987.106/
+

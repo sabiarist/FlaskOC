@@ -1,14 +1,12 @@
 from flask import Flask, render_template, url_for, request
 
-from .utils import find_content, OpenGraphImage
-
-app = Flask(__name__)
+app: Flask = Flask(__name__)
 
 # config options - Make sure you created a config.py file.
 app.config.from_object('config')
 # to get one variable, tape app.config['MY_VARIABLE']
 
-from .utils import find_content
+from .utils import find_content, OpenGraphImage
 
 
 @app.route('/')
