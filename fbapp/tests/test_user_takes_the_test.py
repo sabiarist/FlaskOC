@@ -12,6 +12,11 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.driver.get(self.get_server_url())
         self.clicks_on_Login()
         self.sees_login_page()
+        self.submits_form()
+        # On revient au site
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        # donc de n'avoir plus qu'une fenêtre d'ouverte.
+        self.wait.until(lambda driver: len(self.driver.window_handles) == 1)
         assert self.driver.current_url == 'http://localhost:8943/'
 
     def create_app(self):
@@ -36,17 +41,31 @@ class TestUserTakesTheTest(LiveServerTestCase):
         ActionChains(self.driver).click(button).perform()
 
     def sees_login_page(self):
-        # On attend d'avoir plus d'une fenêtre ouverte.
+        # Attendre fenêtre ouverte.
         self.wait.until(lambda driver: len(self.driver.window_handles) > 1)
         # switch_to permet de changer de fenêtre.
-        # window_handles renvoie une liste contenant toutes les fenêtres ouvertes
-        # par ordre d'ouverture.
-        # La fenêtre d'authentification étant la dernière ouverte,
-        # c'est la dernière de la liste.
+        # window_handles renvoie une liste contenant toutes les fenêtres ouvertes par ordre d'ouverture.
+        # La fenêtre d'authentification étant la dernière ouverte, c'est la dernière de la liste.
         self.driver.switch_to.window(self.driver.window_handles[-1])
         # On attend que la page ait fini de charger.
         self.wait.until(lambda driver: self.get_el('#email'))
-        assert self.driver.current_url.startswith('https://www.facebook.com/login.php')  # <3 Python
+        assert self.driver.current_url.startswith('https://www.facebook.com/login.php')
+
+    def enter_text_field(self, selector, text):
+        # On trouve le champ à remplir.
+        text_field = self.get_el(selector)
+        # On enlève les valeurs qui y sont peut-être déjà.
+        text_field.clear()
+        # On ajoute le texte voulu dans le champ de formulaire.
+        text_field.send_keys(text)
+
+    def submits_form(self):
+        # Le champ email a l'id email
+        self.enter_text_field('#email', app.config['FB_USER_EMAIL'])
+        # Le champ password a l'id pass
+        self.enter_text_field('#pass', app.config['FB_USER_PW'])
+        # On clique sur le bouton de soumission
+        self.get_el('#loginbutton input[name=login]').click()
 
     def tearDown(self):
         self.driver.quit()
